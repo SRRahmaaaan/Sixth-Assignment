@@ -6,12 +6,10 @@ const sliderBtn = document.getElementById("create-slider");
 const sliderContainer = document.getElementById("sliders");
 // selected image
 let sliders = [];
-
 // If this key doesn't work
 // Find the name in the url and go to their website
 // to create your own api key
 const KEY = "15674931-a9d714b6e9d654524df198e00&q";
-
 // show images
 const showImages = (images) => {
   imagesArea.style.display = "block";
@@ -25,21 +23,18 @@ const showImages = (images) => {
     gallery.appendChild(div);
   });
 };
-
 const getImages = (query) => {
-  fetch(
-    `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
-  )
+  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then((response) => response.json())
+    // First Problem Solved
     .then((data) => showImages(data.hits))
     .catch((err) => console.log(err));
 };
-
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
+  // Fifth Problem Solved
   element.classList.toggle("added");
-
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
@@ -66,7 +61,7 @@ const createSlider = () => {
   document.querySelector(".main").style.display = "block";
   // hide image aria
   imagesArea.style.display = "none";
-
+  // Third Problem Solved
   let getDuration = document.getElementById("duration");
   let duration = "";
   if (getDuration.value > 0) {
@@ -88,12 +83,10 @@ const createSlider = () => {
     changeSlide(slideIndex);
   }, duration);
 };
-
 // change slider index
 const changeItem = (index) => {
   changeSlide((slideIndex += index));
 };
-
 // change slide item
 const changeSlide = (index) => {
   const items = document.querySelectorAll(".slider-item");
@@ -101,16 +94,13 @@ const changeSlide = (index) => {
     slideIndex = items.length - 1;
     index = slideIndex;
   }
-
   if (index >= items.length) {
     index = 0;
     slideIndex = 0;
   }
-
   items.forEach((item) => {
     item.style.display = "none";
   });
-
   items[index].style.display = "block";
 };
 
@@ -118,18 +108,17 @@ searchBtn.addEventListener("click", function () {
   document.querySelector(".main").style.display = "none";
   clearInterval(timer);
   const search = document.getElementById("search").value;
+  // Adding A Feature
   if (search.length > 0) {
     getImages(search);
   }
   sliders.length = 0;
 });
-
 sliderBtn.addEventListener("click", function () {
   createSlider();
 });
-document
-  .getElementById("search")
-  .addEventListener("keypress", function (event) {
+// Fourth Problem Solved
+document.getElementById("search").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       document.getElementById("search-btn").click();
     }
