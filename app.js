@@ -10,8 +10,31 @@ let sliders = [];
 // Find the name in the url and go to their website
 // to create your own api key
 const KEY = "15674931-a9d714b6e9d654524df198e00&q";
+
+searchBtn.addEventListener("click", function () {
+  document.querySelector(".main").style.display = "none";
+  clearInterval(timer);
+  const search = document.getElementById("search").value;
+  // Adding First Feature
+  if (search.length > 0) {
+    getImages(search);
+  }
+  sliders.length = 0;
+  document.getElementById("search").value = ""
+});
+
+const getImages = (query) => {
+  fetch(
+    `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
+  )
+    .then((response) => response.json())
+    // First Problem Solved
+    .then((data) => showImages(data.hits));
+    showLoader()
+};
 // show images
 const showImages = (images) => {
+  showLoader();
   imagesArea.style.display = "block";
   gallery.innerHTML = "";
   // show gallery title
@@ -22,13 +45,6 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div);
   });
-};
-const getImages = (query) => {
-  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
-    .then((response) => response.json())
-    // First Problem Solved
-    .then((data) => showImages(data.hits))
-    .catch((err) => console.log(err));
 };
 let slideIndex = 0;
 const selectItem = (event, img) => {
@@ -53,15 +69,15 @@ const createSlider = () => {
   prevNext.className =
     "prev-next d-flex w-100 justify-content-between align-items-center";
   prevNext.innerHTML = ` 
-  <span class="prev" onclick="changeItem(-1)"><i class="fas fa-chevron-left"></i></span>
-  <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
+    <span class="prev" onclick="changeItem(-1)"><i class="fas fa-chevron-left"></i></span>
+    <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
   `;
 
   sliderContainer.appendChild(prevNext);
   document.querySelector(".main").style.display = "block";
-  // hide image aria
+  // hide image area
   imagesArea.style.display = "none";
-  // Third Problem Solved
+  // Second &  Third Problem Solved
   let getDuration = document.getElementById("duration");
   let duration = "";
   if (getDuration.value > 0) {
@@ -103,17 +119,6 @@ const changeSlide = (index) => {
   });
   items[index].style.display = "block";
 };
-
-searchBtn.addEventListener("click", function () {
-  document.querySelector(".main").style.display = "none";
-  clearInterval(timer);
-  const search = document.getElementById("search").value;
-  // Adding A Feature
-  if (search.length > 0) {
-    getImages(search);
-  }
-  sliders.length = 0;
-});
 sliderBtn.addEventListener("click", function () {
   createSlider();
 });
@@ -123,3 +128,7 @@ document.getElementById("search").addEventListener("keypress", function (event) 
       document.getElementById("search-btn").click();
     }
   });
+// Adding Second Feature
+const showLoader = () => {
+  document.getElementById("loadingSpinner").classList.toggle("d-none")
+};
