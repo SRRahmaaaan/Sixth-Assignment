@@ -1,3 +1,7 @@
+body{
+  min-height: 98.5vh;
+  background: linear-gradient(195deg, rgba(72, 126, 176,1.0), rgba(113, 128, 147,1.0), rgba(140, 122, 230,1.0));
+}
 #sliders {
   height: 400px;
   width: 60%;
@@ -54,6 +58,19 @@ img {
 
 .main {
   display: none;
+}
+
+#errorSearch {
+  text-align: center;
+  width: 400px;
+  height: 400px;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  background: linear-gradient(75deg, rgba(192, 57, 43,1.0), rgba(236, 240, 241,0.06), rgba(52, 152, 219,1.0));
+  border-radius: 10px;
+  margin: 50px auto;
+  display: none;
+  padding-top: 15%;
+  color: #fbc531;
 }
 
 @media (max-width: 767px) {

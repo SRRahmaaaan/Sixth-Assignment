@@ -24,9 +24,7 @@ searchBtn.addEventListener("click", function () {
 });
 
 const getImages = (query) => {
-  fetch(
-    `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
-  )
+  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then((response) => response.json())
     // First Problem Solved
     .then((data) => showImages(data.hits));
@@ -34,6 +32,11 @@ const getImages = (query) => {
 };
 // show images
 const showImages = (images) => {
+  // Third Feature Added
+  if (images.length < 1) {
+    document.getElementById("errorText").innerText = "Sorry, Can't Find The Image"
+    document.getElementById("errorSearch").style.display = "block";
+  }
   showLoader();
   imagesArea.style.display = "block";
   gallery.innerHTML = "";
@@ -42,8 +45,9 @@ const showImages = (images) => {
   images.forEach((image) => {
     let div = document.createElement("div");
     div.className = "col-lg-3 col-md-4 col-xs-6 img-item mb-2";
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.innerHTML = ` <img class="img-fluid" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div);
+    document.getElementById("errorSearch").style.display = "none"
   });
 };
 let slideIndex = 0;

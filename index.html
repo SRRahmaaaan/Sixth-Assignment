@@ -15,9 +15,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-dark">
+<body>
   <div class="container">
-    <h4 class="mt-2 text-center text-info">Search Image for create slider</h4>
+    <h4 class="mt-2 text-center text-light">Search Image for create slider</h4>
     <div class="form-inline mt-3 d-flex justify-content-center">
       <div class="input-group col-md-6 mb-2">
         <input type="text" class="form-control" id="search" placeholder="Search Some Picture">
@@ -26,7 +26,7 @@
     </div>
     <section class="images">
       <div class="justify-content-around align-items-center mt-3 gallery-header mb-2">
-        <h3 class="head-title text-center text-info">Select image for create slider</h3>
+        <h3 class="head-title text-center text-light">Select image for create slider</h3>
         <div class="input-group col-md-3 mb-2 mb-md-0">
           <input class="form-control" id="duration" placeholder="slider change duration">
         </div>
@@ -40,13 +40,16 @@
       <div class="row gallery">
 
       </div>
+      <div id="errorSearch">
+        <h3 id="errorText"></h3>
+      </div>
     </section>
     <!-- slider -->
     <div class="main">
       <section class="mt-5" id="sliders">
 
       </section>
-      <div class="dots d-flex mt-2 w-100 justify-content-center align-items-center bg-dark">
+      <div class="dots d-flex mt-2 w-100 justify-content-center align-items-center">
         <span class="dot" onclick="changeItem(-1)"></span>
         <span class="dot" onclick="changeItem(1)"></span>
       </div>
