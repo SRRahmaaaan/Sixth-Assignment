@@ -15,9 +15,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="bg-dark">
   <div class="container">
-    <h4 class="mt-2 text-center">Search Image for create slider</h4>
+    <h4 class="mt-2 text-center text-info">Search Image for create slider</h4>
     <div class="form-inline mt-3 d-flex justify-content-center">
       <div class="input-group col-md-6 mb-2">
         <input type="text" class="form-control" id="search" placeholder="nature">
@@ -36,6 +36,11 @@
 
       </div>
     </section>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border text-danger d-none" id="loadingSpinner" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
     <!-- slider -->
     <div class="main">
       <section class="mt-5" id="sliders">

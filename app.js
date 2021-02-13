@@ -117,8 +117,10 @@ const changeSlide = (index) => {
 searchBtn.addEventListener("click", function () {
   document.querySelector(".main").style.display = "none";
   clearInterval(timer);
-  const search = document.getElementById("search");
-  getImages(search.value);
+  const search = document.getElementById("search").value;
+  if (search.length > 0) {
+    getImages(search);
+  }
   sliders.length = 0;
 });
 
