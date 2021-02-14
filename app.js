@@ -1,3 +1,5 @@
+const KEY = "15674931-a9d714b6e9d654524df198e00&q";
+
 const imagesArea = document.querySelector(".images");
 const gallery = document.querySelector(".gallery");
 const galleryHeader = document.querySelector(".gallery-header");
@@ -6,35 +8,31 @@ const sliderBtn = document.getElementById("create-slider");
 const sliderContainer = document.getElementById("sliders");
 // selected image
 let sliders = [];
-// If this key doesn't work
-// Find the name in the url and go to their website
-// to create your own api key
-const KEY = "15674931-a9d714b6e9d654524df198e00&q";
 
 searchBtn.addEventListener("click", function () {
   document.querySelector(".main").style.display = "none";
   clearInterval(timer);
   const search = document.getElementById("search").value;
-  // Adding First Feature
+  // Adding First Feature Here
   if (search.length > 0) {
     getImages(search);
   }
   sliders.length = 0;
-  document.getElementById("search").value = ""
+  document.getElementById("search").value = "";
 });
 
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then((response) => response.json())
-    // First Problem Solved
+    // First Problem Solved Here
     .then((data) => showImages(data.hits));
-    showLoader()
+    showLoader();
 };
 // show images
 const showImages = (images) => {
-  // Third Feature Added
+  // Third Feature Added Here
   if (images.length < 1) {
-    document.getElementById("errorText").innerText = "Sorry, Can't Find The Image"
+    document.getElementById("errorText").innerText ="Sorry, Can't Find The Image";
     document.getElementById("errorSearch").style.display = "block";
   }
   showLoader();
@@ -47,13 +45,13 @@ const showImages = (images) => {
     div.className = "col-lg-3 col-md-4 col-xs-6 img-item mb-2";
     div.innerHTML = ` <img class="img-fluid" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div);
-    document.getElementById("errorSearch").style.display = "none"
+    document.getElementById("errorSearch").style.display = "none";
   });
 };
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  // Fifth Problem Solved
+  // Fifth Problem Solved Here
   element.classList.toggle("added");
   let item = sliders.indexOf(img);
   if (item === -1) {
@@ -76,12 +74,11 @@ const createSlider = () => {
     <span class="prev" onclick="changeItem(-1)"><i class="fas fa-chevron-left"></i></span>
     <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
   `;
-
   sliderContainer.appendChild(prevNext);
   document.querySelector(".main").style.display = "block";
   // hide image area
   imagesArea.style.display = "none";
-  // Second &  Third Problem Solved
+  // Second &  Third Problem Solved Here
   let getDuration = document.getElementById("duration");
   let duration = "";
   if (getDuration.value > 0) {
@@ -126,13 +123,13 @@ const changeSlide = (index) => {
 sliderBtn.addEventListener("click", function () {
   createSlider();
 });
-// Fourth Problem Solved
+// Fourth Problem Solved Here
 document.getElementById("search").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       document.getElementById("search-btn").click();
     }
   });
-// Adding Second Feature
+// Adding Second Feature Here
 const showLoader = () => {
-  document.getElementById("loadingSpinner").classList.toggle("d-none")
+  document.getElementById("loadingSpinner").classList.toggle("d-none");
 };

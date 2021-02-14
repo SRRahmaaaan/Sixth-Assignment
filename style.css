@@ -2,6 +2,15 @@ body{
   min-height: 98.5vh;
   background: linear-gradient(195deg, rgba(72, 126, 176,1.0), rgba(113, 128, 147,1.0), rgba(140, 122, 230,1.0));
 }
+body::-webkit-scrollbar{
+  width: 10px;
+}
+body::-webkit-scrollbar-track{
+  background:linear-gradient(195deg, rgba(72, 126, 176,1.0), rgba(113, 128, 147,1.0), rgba(140, 122, 230,1.0));
+}
+body::-webkit-scrollbar-thumb{
+  background: linear-gradient(75deg, rgba(192, 57, 43,1.0), rgba(236, 240, 241,0.06), rgba(52, 152, 219,1.0)) ;
+}
 #sliders {
   height: 400px;
   width: 60%;
@@ -9,29 +18,21 @@ body{
   margin: 0 auto;
   position: relative;
 }
-
 .gallery-header {
   display: none;
 }
-
 .slider-item {
   display: none;
 }
-
-.img-thumbnail {
-  cursor: pointer;
-}
-
 .added {
   border: 5px solid crimson;
   border-radius: 5px;
 }
-
 img {
   height: 400px;
   object-fit: cover;
+  cursor: pointer;
 }
-
 .prev-next {
   position: absolute;
   top: 50%;
@@ -39,14 +40,12 @@ img {
   transform: translateX(-50%) translateY(-50%);
   cursor: pointer;
 }
-
 .prev,
 .next {
   background-color: transparent;
   padding: 8px 10px;
   color: #fff;
 }
-
 .dot {
   background-color: rgb(163, 156, 156);
   height: 10px;
@@ -55,11 +54,9 @@ img {
   cursor: pointer;
   margin: 0 3px;
 }
-
 .main {
   display: none;
 }
-
 #errorSearch {
   text-align: center;
   width: 400px;
@@ -72,7 +69,6 @@ img {
   padding-top: 15%;
   color: #fbc531;
 }
-
 @media (max-width: 767px) {
   .justify-content-around.align-items-center.mt-3.gallery-header.mb-2 {
     flex-direction: column;
