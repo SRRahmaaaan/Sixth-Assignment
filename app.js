@@ -56,6 +56,8 @@ const selectItem = (event, img) => {
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
+  } if (item >= 0) {
+    sliders.pop(img)
   }
 };
 var timer;
